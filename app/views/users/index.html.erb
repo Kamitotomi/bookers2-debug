@@ -1,0 +1,45 @@
+<div class="body">
+	<div class="container">
+		<p id="notice"></p>
+
+		<div class="row">
+			<div class="col-xs-3">
+				<%= render 'users/profile', user: @user %>
+				
+				<%= render 'books/newform', book: @book %>
+			</div>
+
+			<!-- ログインユーザーの投稿一覧 -->
+
+			<div class="col-xs-9">
+				<h2>Users</h2>
+
+				<table class="table table-hover table-inverse">
+					
+					<thead>
+						<tr>
+							<th>image</th>
+							<th>name</th>
+							<th colspan="3"></th>
+						</tr>
+					</thead>
+					<!-- 繰り返し処理 -->
+					<% @users.each do |users| %>
+						<tbody>
+							<tr>
+								<td><%= attachment_image_tag users, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>  </td>
+								
+								<td><%= users.name %></td> 
+								<td><%= link_to "Show", user_path(users.id) %></td>
+								
+							</tr>
+						</tbody>
+					<% end %>
+				</table>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div>
